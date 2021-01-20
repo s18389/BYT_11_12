@@ -14,6 +14,7 @@ public class Page {
     private Integer views;
     private Integer numberOfLikes;
     private ArrayList<Comment> commentsList = new ArrayList<>();
+    private ArrayList<PageReport> reportsList = new ArrayList<>();
     private User user;
 
     public Page(Integer pageID, String title, String content, Date dateOfCreation, Date dateOfLastModification, User user) {
@@ -84,8 +85,22 @@ public class Page {
     public ArrayList<Comment> getComments() {
         return commentsList;
     }
+    public void setComments(ArrayList<Comment> comments) {
+        this.commentsList = comments;
+    }
     public boolean addComment(Comment comment) {
         commentsList.add(comment);
+        return true;
+    }
+
+    public ArrayList<PageReport> getReports() {
+        return reportsList;
+    }
+    public void setReports(ArrayList<PageReport> reports) {
+        this.reportsList = reports;
+    }
+    public boolean addReport(PageReport report) {
+        reportsList.add(report);
         return true;
     }
 
