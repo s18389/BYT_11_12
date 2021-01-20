@@ -2,6 +2,7 @@ package test;
 
 import classes.Comment;
 import classes.Page;
+import classes.PageReport;
 import classes.User;
 import org.junit.After;
 import org.junit.Assert;
@@ -24,6 +25,7 @@ public class PageTest {
     private User user;
     private User anotherUser;
     private Comment comment;
+    private PageReport report;
 
 @Before
 public void before() throws Exception {
@@ -33,6 +35,7 @@ public void before() throws Exception {
     page = new Page(1, "Super Cactus!", "I LOVE MY CACTUS!", Date.valueOf("2021-01-14"), Date.valueOf("2021-01-14"), user);
     anotherPage = new Page(2, "Bad Cactus!", "I LOVE MY CACTUS!", Date.valueOf("2021-01-14"), Date.valueOf("2021-01-14"), user);
     comment = new Comment("I like this cactus", user, page);
+    report = new PageReport(user, page);
 } 
 
 @After
@@ -236,7 +239,7 @@ public void testAddComments() throws Exception {
     page.addComment(comment);
     Assert.assertEquals(Integer.valueOf(2), Integer.valueOf(page.getComments().size()));
     Assert.assertNotEquals(Integer.valueOf(1), Integer.valueOf(page.getComments().size()));
-} 
+}
 
 /** 
 * 
@@ -250,6 +253,20 @@ public void testSetComments() throws Exception {
     page.addComment(comment);
     Assert.assertEquals(Integer.valueOf(2), Integer.valueOf(page.getComments().size()));
     Assert.assertNotEquals(Integer.valueOf(1), Integer.valueOf(page.getComments().size()));
+}
+
+/** 
+* 
+* Method: addReport()
+* 
+*/ 
+@Test
+public void testAddReport() throws Exception {
+    page.addReport(report);
+    Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(page.getReports().size()));
+    page.addComment(report);
+    Assert.assertEquals(Integer.valueOf(2), Integer.valueOf(page.getReports().size()));
+    Assert.assertNotEquals(Integer.valueOf(1), Integer.valueOf(page.getReports().size()));
 } 
 
 /** 
